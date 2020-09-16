@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
+import Person from './Person/Person'
 
 function App() {
   return (
     // className to put the styling, this is the root element
     <div className="App">
       <h1>This is h1 header</h1>
-      <p>This is a p</p>
+      <Person />
     </div>
   );
   // return React.createElement('div', {className: 'app'}, React.createElement('h1',null,'This is h1 header'));
