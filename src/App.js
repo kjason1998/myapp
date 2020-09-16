@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
+    // className to put the styling, this is the root element
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>This is h1 header</h1>
+      <p>This is a p</p>
     </div>
   );
+  // return React.createElement('div', {className: 'app'}, React.createElement('h1',null,'This is h1 header'));
+  // on top is doing same thing as bellow - thus we need React import
+  // return (
+  //   // className to put the styling
+  //   <div className="App">
+  //     <h1>This is h1 header</h1>
+  //   </div>
+  // );
 }
 
 export default App;
