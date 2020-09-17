@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // using ES6
-const person = (props)  => {
+const Person = (props)  => {
     return( 
         <div>
             <p>My name is {props.name}! I amd {props.age} years old</p>
@@ -9,7 +9,7 @@ const person = (props)  => {
         </div>
     )};
 
-export default person;
+export default Person;
 
 // WHen using class-based components, it will be this.props like below
 // class Person extends Component{
