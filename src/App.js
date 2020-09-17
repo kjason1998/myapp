@@ -3,7 +3,7 @@ import './App.css';
 import Person from './Person/Person'
 
 const App = ()  => {
-  // this is another example of useState
+  // this is another example of useState that have 2 state value - it is a lot better to saperate it 
   const [otherExampleState,setOtherExampleState] = useState({
     persons:[
       {name:'person1',age:1},{name:'person2',age:2},{name:'person3',age:3}
@@ -15,6 +15,13 @@ const App = ()  => {
 
   const onClickListener = () => {
     setPerson({...person,name:'not kevin anymore :C'})
+    setPersons({
+      persons:[
+        {name:'person1change',age:11},
+        {name:'person2change',age:21},
+        {name:'person3change',age:31}
+      ]  
+    })
   }
 
   return (
