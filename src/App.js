@@ -62,6 +62,27 @@ const App = () => {
     cursor:'pointer',  
   };
 
+  let personsView = null;
+
+  if(!hidePersons){
+    personsView = (
+      <div>
+        <Person name={person.name} age={person.age} changes={nameChangeHandler}/>
+        {persons.map((person) => (
+          <Person 
+            name={person.name} 
+            age={person.age} />
+        ))}
+        <Person 
+          name="Try this one please" 
+          age="24" 
+          click={onClickTypeSomethingInLog}>
+          My o my
+        </Person>
+    </div>
+    );
+  }
+
   return (
     // className to put the styling, this is the root element
     <div className="App">
@@ -70,22 +91,7 @@ const App = () => {
         style={style}
         onClick={toggleHidePersonHandler}>Toggle persons</button>
       <button onClick={onClickListenerChangeNamePerson.bind(this,'other way to pass param')}>My Amazing second Button</button>
-      {hidePersons ?
-        <div>
-          <Person name={person.name} age={person.age} changes={nameChangeHandler}/>
-          {persons.map((person) => (
-            <Person 
-              name={person.name} 
-              age={person.age} />
-          ))}
-          <Person 
-            name="Try this one please" 
-            age="24" 
-            click={onClickTypeSomethingInLog}>
-            My o my
-          </Person>
-      </div>: null
-      }
+      {personsView}
     </div>
   );
   // return React.createElement('div', {className: 'app'}, React.createElement('h1',null,'This is h1 header'));
