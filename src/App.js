@@ -43,6 +43,15 @@ const App = () => {
     console.log('it is clicked!')
   }
 
+  const [hidePersons,setHidePersons] = useState(false)
+
+  const toggleHidePersonHandler = () => {
+    if(hidePersons){
+      setHidePersons(false)
+    }else{
+      setHidePersons(true)
+    }
+  }
 
   // this is called in line styling - cannot use the full power of css
   const style = {
@@ -57,18 +66,26 @@ const App = () => {
     // className to put the styling, this is the root element
     <div className="App">
       <h1>This is h1 header</h1>
-      <Person name={person.name} age={person.age} changes={nameChangeHandler}/>
       <button 
         style={style}
-        onClick={() => onClickListenerChangeNamePerson('this is not kevin using bind')}>My Amazing Button</button>
+        onClick={toggleHidePersonHandler}>Toggle persons</button>
       <button onClick={onClickListenerChangeNamePerson.bind(this,'other way to pass param')}>My Amazing second Button</button>
-      {persons.map((person) => (
-        <Person name={person.name} age={person.age} />
-      ))}
-      <Person name="Try this one please" age="24" 
-        click={onClickTypeSomethingInLog} >
-        My o my
-      </Person>
+      {hidePersons ?
+        <div>
+          <Person name={person.name} age={person.age} changes={nameChangeHandler}/>
+          {persons.map((person) => (
+            <Person 
+              name={person.name} 
+              age={person.age} />
+          ))}
+          <Person 
+            name="Try this one please" 
+            age="24" 
+            click={onClickTypeSomethingInLog}>
+            My o my
+          </Person>
+      </div>: null
+      }
     </div>
   );
   // return React.createElement('div', {className: 'app'}, React.createElement('h1',null,'This is h1 header'));
