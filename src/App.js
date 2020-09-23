@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Person from "./Person/Person";
+import { render } from "@testing-library/react";
 
 const App = () => {
   // this is another example of useState that have 2 state value - it is a lot better to separate it
@@ -42,12 +43,24 @@ const App = () => {
     console.log('it is clicked!')
   }
 
+
+  // this is called in line styling - cannot use the full power of css
+  const style = {
+    backgroundColor: 'white',
+    font: 'inherit',
+    border: '1px solid blue',
+    padding: '8px',
+    cursor:'pointer',  
+  };
+
   return (
     // className to put the styling, this is the root element
     <div className="App">
       <h1>This is h1 header</h1>
       <Person name={person.name} age={person.age} changes={nameChangeHandler}/>
-      <button onClick={() => onClickListenerChangeNamePerson('this is not kevin using bind')}>My Amazing Button</button>
+      <button 
+        style={style}
+        onClick={() => onClickListenerChangeNamePerson('this is not kevin using bind')}>My Amazing Button</button>
       <button onClick={onClickListenerChangeNamePerson.bind(this,'other way to pass param')}>My Amazing second Button</button>
       {persons.map((person) => (
         <Person name={person.name} age={person.age} />
