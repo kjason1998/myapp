@@ -5,8 +5,8 @@ import "./Person.css";
 const Person = (props)  => {
     return( 
         <div className='Person'>
-            <p>My name is {props.name}! I amd {props.age} years old</p>
-            <p onClick={props.click}>{props.children}</p>
+            <p onClick={props.click}>My name is {props.name}! I amd {props.age} years old</p>
+            <p>{props.children}</p>
             <input type='test' onChange={props.changes} value={props.name}/>
         </div>
     )};
