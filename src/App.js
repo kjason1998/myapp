@@ -20,6 +20,7 @@ const App = () => {
   ]);
   const [person, setPerson] = useState({ name: "kevin fist", age: 99999 });
 
+  // example of using bind to pass something in the method
   const onClickListenerChangeNamePerson = (newName) => {
     setPerson({ ...person, name: newName });
   };
@@ -32,9 +33,9 @@ const App = () => {
   const onClickListenerExampleForArray = () => {
     setPersons({
       persons: [
-        { name: "person1change", age: 11 },
-        { name: "person2change", age: 21 },
-        { name: "person3change", age: 31 },
+        { id:'', name: "person2change", age: 21 },
+        { id:'', name: "person1change", age: 11 },
+        { id:'', name: "person3change", age: 31 },
       ],
     });
   };
@@ -53,6 +54,13 @@ const App = () => {
     }
   }
 
+  // other way to pass param into a method (other way is using bind)
+  const onDeleteHandler = (personIndex) => {
+    const tempPersons = [...persons]
+    tempPersons.splice(personIndex,1)
+    setPersons(tempPersons);
+  }
+
   // this is called in line styling - cannot use the full power of css
   const style = {
     backgroundColor: 'white',
@@ -68,10 +76,12 @@ const App = () => {
     personsView = (
       <div>
         <Person name={person.name} age={person.age} changes={nameChangeHandler}/>
-        {persons.map((person) => (
+        {persons.map((person,index) => (
           <Person 
+            click={() => onDeleteHandler(index)}
             name={person.name} 
-            age={person.age} />
+            age={person.age} 
+            key={index}/>
         ))}
         <Person 
           name="Try this one please" 
