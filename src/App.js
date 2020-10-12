@@ -3,6 +3,8 @@ import "./App.css";
 import Person from "./Person/Person";
 import { render } from "@testing-library/react";
 
+// summary https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8091086#notes in lecture 61
+
 const App = () => {
   // this is another example of useState that have 2 state value - it is a lot better to separate it
   const [otherExampleState, setOtherExampleState] = useState({
@@ -14,9 +16,9 @@ const App = () => {
     otherValue: "someOtherValue",
   });
   const [persons, setPersons] = useState([
-    { name: "Babayaga", age: 21 },
-    { name: "oldest kevin", age: 232 },
-    { name: "h20", age: 99 },
+    { id:'it is a key', name: "Babayaga", age: 21 },
+    { id:'key need to be unique and not related to index',name: "oldest kevin", age: 232 },
+    { id:'it is only dummy keys', name: "h20", age: 99 },
   ]);
   const [person, setPerson] = useState({ name: "kevin fist", age: 99999 });
 
@@ -30,19 +32,41 @@ const App = () => {
     setPerson({ ...person, name: event.target.value });
   };
 
+  // Changing value of name of a person with the id inside the parameter.
+  const nameChangeHandlerOnArray = (event, id) => {
+    // get the index of the person with the unique id in the parameter
+    const personIndex = persons.findIndex(eachPerson =>{
+      return eachPerson.id === id
+    })
+
+    /**
+     * Instead of accessing the person and changes it
+     * better to make a new person object with the old Information 
+     * with the use of spread operator
+     **/ 
+    const personCopy = {...persons[personIndex]}
+    // we can also use
+    // const person = Object.assign({},persons[personIndex])
+
+    personCopy.name = event.target.value
+
+    const personsCopy = [...persons]
+
+
+    personsCopy[personIndex] = personCopy
+    console.log(personsCopy)
+    setPersons(personsCopy);
+  };
+
   const onClickListenerExampleForArray = () => {
     setPersons({
       persons: [
-        { id:'', name: "person2change", age: 21 },
-        { id:'', name: "person1change", age: 11 },
-        { id:'', name: "person3change", age: 31 },
+        { name: "person2change", age: 21 },
+        { name: "person1change", age: 11 },
+        { name: "person3change", age: 31 },
       ],
     });
   };
-
-  const onClickTypeSomethingInLog = () => {
-    console.log('it is clicked!')
-  }
 
   const [hidePersons,setHidePersons] = useState(false)
 
@@ -75,20 +99,14 @@ const App = () => {
   if(!hidePersons){
     personsView = (
       <div>
-        <Person name={person.name} age={person.age} changes={nameChangeHandler}/>
         {persons.map((person,index) => (
           <Person 
             click={() => onDeleteHandler(index)}
             name={person.name} 
             age={person.age} 
-            key={index}/>
+            key={person.id}
+            changes={(event) => nameChangeHandlerOnArray(event, person.id)}/>
         ))}
-        <Person 
-          name="Try this one please" 
-          age="24" 
-          click={onClickTypeSomethingInLog}>
-          My o my
-        </Person>
     </div>
     );
   }
