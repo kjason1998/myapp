@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import Person from "./Person/Person";
+import Radium from 'radium'
 import { render } from "@testing-library/react";
 
 // summary https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8091086#notes in lecture 61
@@ -136,4 +137,4 @@ const App = () => {
   // );
 };
 
-export default App;
+export default Radium(App);
