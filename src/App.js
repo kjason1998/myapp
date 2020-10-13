@@ -6,15 +6,7 @@ import { render } from "@testing-library/react";
 // summary https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8091086#notes in lecture 61
 
 const App = () => {
-  // this is another example of useState that have 2 state value - it is a lot better to separate it
-  const [otherExampleState, setOtherExampleState] = useState({
-    persons: [
-      { name: "person1", age: 1 },
-      { name: "person2", age: 2 },
-      { name: "person3", age: 3 },
-    ],
-    otherValue: "someOtherValue",
-  });
+
   const [persons, setPersons] = useState([
     { id:'it is a key', name: "Babayaga", age: 21 },
     { id:'key need to be unique and not related to index',name: "oldest kevin", age: 232 },
@@ -115,10 +107,19 @@ const App = () => {
     styleBtnToggle.border = '1px solid black'
   }
 
+  let classesP = []
+  if(persons.length<=2){
+    classesP.push('red')
+  }
+  if(persons.length<=1){
+    classesP.push('bold')
+  }
+
   return (
     // className to put the styling, this is the root element
     <div className="App">
       <h1>React udemy class</h1>
+      <p className={classesP.join(' ')}>This is a list of persons</p>
       <button 
         style={styleBtnToggle}
         onClick={toggleHidePersonHandler}>Toggle persons</button>
