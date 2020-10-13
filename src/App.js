@@ -86,10 +86,11 @@ const App = () => {
   }
 
   // this is called in line styling - cannot use the full power of css
-  const style = {
-    backgroundColor: 'white',
+  const styleBtnToggle = {
+    backgroundColor: 'green',
+    color:'white',
     font: 'inherit',
-    border: '1px solid blue',
+    border: '1px solid',
     padding: '8px',
     cursor:'pointer',  
   };
@@ -109,16 +110,18 @@ const App = () => {
         ))}
     </div>
     );
+    styleBtnToggle.backgroundColor = 'red'
+    styleBtnToggle.color = 'black'
+    styleBtnToggle.border = '1px solid black'
   }
 
   return (
     // className to put the styling, this is the root element
     <div className="App">
-      <h1>This is h1 header</h1>
+      <h1>React udemy class</h1>
       <button 
-        style={style}
+        style={styleBtnToggle}
         onClick={toggleHidePersonHandler}>Toggle persons</button>
-      <button onClick={onClickListenerChangeNamePerson.bind(this,'other way to pass param')}>My Amazing second Button</button>
       {personsView}
     </div>
   );
