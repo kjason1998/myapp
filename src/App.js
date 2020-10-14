@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
 import Person from "./Person/Person";
-import Radium, { StyleRoot } from "radium";
-import { render } from "@testing-library/react";
 
 // summary https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8091086#notes in lecture 61
 
@@ -135,16 +133,14 @@ const App = () => {
   }
 
   return (
-    <StyleRoot>
-      <div className="App">
-        <h1>React udemy class</h1>
-        <p className={classesP.join(" ")}>This is a list of persons</p>
-        <button style={styleBtnToggle} onClick={toggleHidePersonHandler}>
-          Toggle persons
-        </button>
-        {personsView}
-      </div>
-    </StyleRoot>
+    <div className="App">
+      <h1>React udemy class</h1>
+      <p className={classesP.join(" ")}>This is a list of persons</p>
+      <button style={styleBtnToggle} onClick={toggleHidePersonHandler}>
+        Toggle persons
+      </button>
+      {personsView}
+    </div>
   );
   // return React.createElement('div', {className: 'app'}, React.createElement('h1',null,'This is h1 header'));
   // on top is doing same thing as bellow - thus we need React import
@@ -156,4 +152,4 @@ const App = () => {
   // );
 };
 
-export default Radium(App);
+export default App;
