@@ -1,8 +1,28 @@
 import React, { useState } from "react";
-import "./App.css";
+import Styled from "styled-components";
 import Person from "./Person/Person";
 
 // summary https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8091086#notes in lecture 61
+
+const ToggleButton = Styled.button`
+  background-color: ${props => props.hidePersons? 'green':'#db3e00'};
+  color: white;
+  font: inherit;
+  border: 5px solid ${props => props.hidePersons? '#006b76':'#ff5722'};
+  borderRadius: 3px;
+  padding: 8px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${props => props.hidePersons? 'lightgreen':'#b80000'};
+  };
+  &:focus {
+    outline: none;
+  };
+`;
+
+const AppDiv = Styled.div`
+  text-align: center;
+`;
 
 const App = () => {
   const [persons, setPersons] = useState([
@@ -133,14 +153,14 @@ const App = () => {
   }
 
   return (
-    <div className="App">
+    <AppDiv>
       <h1>React udemy class</h1>
       <p className={classesP.join(" ")}>This is a list of persons</p>
-      <button style={styleBtnToggle} onClick={toggleHidePersonHandler}>
+      <ToggleButton hidePersons={hidePersons} onClick={toggleHidePersonHandler}>
         Toggle persons
-      </button>
+      </ToggleButton>
       {personsView}
-    </div>
+    </AppDiv>
   );
   // return React.createElement('div', {className: 'app'}, React.createElement('h1',null,'This is h1 header'));
   // on top is doing same thing as bellow - thus we need React import
