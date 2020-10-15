@@ -1,0 +1,31 @@
+.Button{
+    background-color: green;
+    color: white;
+    font: inherit;
+    border: 5px solid #006b76;
+    border-radius: 3px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.Button:hover {
+    background-color: lightgreen;
+}
+
+.Button.Red{
+    background-color: #db3e00;
+    color: white;
+    font: inherit;
+    border: 5px solid #ff5722;
+    border-radius: 3px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.Button.Red:hover {
+    background-color: #b80000;
+}
+
+.Button:focus {
+    outline: none;
+}

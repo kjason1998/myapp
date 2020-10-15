@@ -1,24 +1,10 @@
 import React, { useState } from "react";
+import Styles from "./ToggleButton.module.css";
 import Styled from "styled-components";
+import "./App.css";
 import Person from "./Person/Person";
 
 // summary https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/8091086#notes in lecture 61
-
-const ToggleButton = Styled.button`
-  background-color: ${props => props.hidePersons? 'green':'#db3e00'};
-  color: white;
-  font: inherit;
-  border: 5px solid ${props => props.hidePersons? '#006b76':'#ff5722'};
-  borderRadius: 3px;
-  padding: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color: ${props => props.hidePersons? 'lightgreen':'#b80000'};
-  };
-  &:focus {
-    outline: none;
-  };
-`;
 
 const AppDiv = Styled.div`
   text-align: center;
@@ -117,6 +103,7 @@ const App = () => {
   // ':hover' is pseudo selector
 
   let personsView = null;
+  let toggleButtonStyles = [Styles.Button];
 
   if (!hidePersons) {
     personsView = (
@@ -132,16 +119,7 @@ const App = () => {
         ))}
       </div>
     );
-    styleBtnToggle.backgroundColor = "#b80000";
-    styleBtnToggle.color = "white";
-    styleBtnToggle.border = "5px solid #ff5722";
-    styleBtnToggle.borderRadius = "3px";
-    styleBtnToggle[":hover"] = {
-      backgroundColor: "#db3e00",
-    };
-    styleBtnToggle[":focus"] = {
-      outline: "none",
-    };
+    toggleButtonStyles.push(Styles.Red)
   }
 
   let classesP = [];
@@ -156,9 +134,13 @@ const App = () => {
     <AppDiv>
       <h1>React udemy class</h1>
       <p className={classesP.join(" ")}>This is a list of persons</p>
-      <ToggleButton hidePersons={hidePersons} onClick={toggleHidePersonHandler}>
+      <button
+        className={toggleButtonStyles.join(" ")}
+        hidePersons={hidePersons}
+        onClick={toggleHidePersonHandler}
+      >
         Toggle persons
-      </ToggleButton>
+      </button>
       {personsView}
     </AppDiv>
   );
